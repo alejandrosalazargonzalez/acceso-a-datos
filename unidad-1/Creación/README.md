@@ -304,13 +304,36 @@ Genera un número aleatorio entre 1 y 20.
 Pide al usuario que lo adivine y usa un bucle con condicionales para dar pistas: "Mayor" o "Menor".
 
 ```php
-
+$numero = rand(1,20);
+$adivinado = true;
+while ($adivinado) {
+    $nDado = readline("ingresa un numero ");
+    if ($nDado < $numero) {
+        echo "el numero ingresado es mas pequeño \n";
+    } else if($nDado > $numero){
+        echo "el numero ingresado es mas grande \n";
+    }
+    if ($nDado == $numero) {
+        $adivinado = false;
+        break;
+    }
+}
+echo "adivinaste \n";
 ```
 
 ### salida
 
 ```bash
-1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+ingresa un numero 1
+el numero ingresado es mas pequeño 
+ingresa un numero 2
+el numero ingresado es mas pequeño 
+ingresa un numero 3
+el numero ingresado es mas pequeño 
+ingresa un numero 4
+el numero ingresado es mas pequeño 
+ingresa un numero 5
+adivinaste 
 ```
 
 ## 4️⃣ Construcción de Algorítmicos
@@ -319,52 +342,92 @@ Pide al usuario que lo adivine y usa un bucle con condicionales para dar pistas:
 Comprueba si un número es perfecto (la suma de sus divisores propios es igual al número).
 
 ```php
+    $numero = 8128;
+    $sumaDivisores = 0;
 
+    for ($i = 1; $i <= $numero / 2; $i++) {
+        if ($numero % $i == 0) {
+            $sumaDivisores += $i;
+        }
+    }
+
+    if ($sumaDivisores == $numero) {
+        echo "$numero es un número perfecto.\n";
+    } else {
+        echo "$numero no es un número perfecto.\n";
+    }
 ```
 
 ### salida
 
 ```bash
-1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+8128 es un número perfecto.
+
+12 no es un número perfecto.
 ```
 
-**17. Invertir número**  
+**17. Invertir número**
 Escribe un algoritmo que invierta los dígitos de un número (ejemplo: 123 → 321).
 
 ```php
-
+    $numero = 8128; 
+    $invertido = 0;
+    echo "$numero\n";
+    while ($numero > 0) {
+        $digito = $numero % 10;
+        $invertido= $invertido * 10 + $digito;
+        $numero = intdiv($numero, 10);
+    }
+    echo "$invertido\n";
 ```
 
 ### salida
 
 ```bash
-1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+1234
+4321
 ```
 
 **18. Palíndromo**  
 Comprueba si una palabra almacenada en una variable es palíndroma.
 
 ```php
-
+    $palabra = "hola"; 
+    $invertido = strrev($palabra);
+    if ($palabra == $invertido) {
+        echo "$palabra es palindromo\n";
+    } else{
+        echo "$palabra no es palindromo\n";
+    }
 ```
 
 ### salida
 
 ```bash
-1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+hola no es palindromo
+ana es palindromo
 ```
 
 **19. Máximo común divisor (MCD)**  
 Escribe un algoritmo que calcule el MCD de dos números.
 
 ```php
+$numero1 = 48; 
+$numero2 = 18; 
 
+while ($numero2 != 0) {
+    $temp = $numero2;
+    $numero2 = $numero1 % $numero2;
+    $numero1 = $temp;
+}
+
+echo "El MCD es: " . $numero1 . "\n";
 ```
 
 ### salida
 
 ```bash
-1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+El MCD es: 6
 ```
 
 **20. Triángulo de asteriscos**  
@@ -380,11 +443,37 @@ Ejemplo con n = 5:
 ```
 
 ```php
-
+    $tamanio = readline("introduce el tamanio del triangulo ");
+    for ($i=0; $i < $tamanio; $i++) { 
+        for ($j=0; $j < $i; $j++) { 
+            echo "*";
+        }
+        echo "\n";
+    }
 ```
 
 ### salida
 
 ```bash
-1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+introduce el tamanio del triangulo 20
+
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+***********
+************
+*************
+**************
+***************
+****************
+*****************
+******************
+*******************
 ```
