@@ -14,10 +14,17 @@ Pide dos números y muestra cuál es mayor o si son iguales.
 
 ```
 
+### salida
+
+```bash
+el resultado de 1 + 2 es 3
+```
+
 **2. Edad permitida**  
-Pide la edad de una persona y muestra:
-        "Eres menor de edad" si es < 18.
-        "Eres mayor de edad" si es ≥ 18.
+Pide la edad de una persona y muestra:  
+
+* "Eres menor de edad" si es < 18.  
+* "Eres mayor de edad" si es ≥ 18.
 
 ```php
 <?php
@@ -27,6 +34,12 @@ Pide la edad de una persona y muestra:
     }else{
         echo "no eres mayor de edad";
     }
+```
+
+### salida
+
+```bash
+eres mayor de edad
 ```
 
 **3. Positivo, negativo o cero**  
@@ -45,6 +58,12 @@ Comprueba si un número almacenado en una variable es positivo, negativo o cero.
         echo $mensaje . "cero";
     }
 
+```
+
+### salida
+
+```bash
+el numero es positivo
 ```
 
 **4. Nota final**  
@@ -68,6 +87,12 @@ Comprueba si un número almacenado en una variable es positivo, negativo o cero.
     }
 ```
 
+### salida
+
+```bash
+el alumno tiene un aprobado
+```
+
 ## 2️⃣ Bucles (for, while, foreach)
 
 **5. Contar del 1 al 100**  
@@ -78,6 +103,12 @@ Muestra los números del 1 al 100 en pantalla.
     for($i = 0; $i<=100; $i++){
         echo $i."\n";
     }
+```
+
+### salida
+
+```bash
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 
 ```
 
 **6. Suma acumulada**  
@@ -94,6 +125,12 @@ Calcula la suma de los números del 1 al 50 usando un bucle.
     echo $suma;
 ```
 
+### salida
+
+```bash
+1275
+```
+
 **7. Tabla de multiplicar**  
  Pide un número y genera su tabla de multiplicar del 1 al 10.
 
@@ -103,6 +140,12 @@ Calcula la suma de los números del 1 al 50 usando un bucle.
     for($i = 1; $i <= 10; $i++) {
         echo "$numero x $i = " . ($numero * $i) . "\n";
     }
+```
+
+### salida
+
+```bash
+7 x 1 = 7, 7 x 2 = 14, 7 x 3 = 21, 7 x 4 = 28, 7 x 5 = 35, 7 x 6 = 42, 7 x 7 = 49, 7 x 8 = 56, 7 x 9 = 63, 7 x 10 = 70, 
 ```
 
 **8. Números pares**  
@@ -115,11 +158,26 @@ Muestra todos los números pares entre 1 y 50.
     }
 ```
 
+### salida
+
+```bash
+2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 
+```
+
 **9. Cuenta atrás**  
 Haz un bucle que cuente de 10 a 1 y luego muestre "¡Fin!".
 
 ```php
 <?php
+    for($i = 10; $i >= 1; $i--) {
+        echo $i . "\n";
+    }
+    echo "¡Fin!";
+```
+
+### salida
+
+```bash
     for($i = 10; $i >= 1; $i--) {
         echo $i . "\n";
     }
@@ -141,42 +199,118 @@ Calcula el factorial de un número introducido (ejemplo: 5! = 120).
     echo "!$numero = $factorial";
 ```
 
+### salida
+
+```bash
+!5 = 120
+```
+
 ## 3️⃣ Combinando Condicionales y Bucles
 
 **11. Números primos**  
 Escribe un algoritmo que muestre los números primos entre 1 y 50.
 
 ```php
+<?php
+for ($j = 2; $j <= 50; $j++) {
+    $esPrimo = true;
+    for ($i = 2; $i < $j; $i++) {
+        if ($j % $i == 0) {
+            $esPrimo = false;
+            break;
+        }
+    }
+    if ($esPrimo) {
+        echo $j . "\n";
+    }
+}
+```
 
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
 ```
 
 **12. Fibonacci**  
 Genera los primeros 20 términos de la secuencia de Fibonacci.
 
 ```php
+$terminos = 20;
+$a = 0;
+$b = 1;
 
+echo "Los primeros $terminos términos de la secuencia de Fibonacci son:\n";
+echo "$a\n";
+echo "$b\n";
+
+for ($i = 3; $i <= $terminos; $i++) {
+    $siguiente = $a + $b;
+    echo "$siguiente\n";
+    $a = $b;
+    $b = $siguiente;
+}
+```
+
+### salida
+
+```bash
+Los primeros 20 términos de la secuencia de Fibonacci son: 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 
 ```
 
 **13. Múltiplos de un número**  
 Pide un número n y muestra sus múltiplos hasta 100.
 
 ```php
+$numero = 2;
 
+echo "Los múltiplos de $numero hasta 100 son:\n";
+
+for ($i = $numero; $i <= 100; $i += $numero) {
+    echo "$i\n";
+}
+```
+
+### salida
+
+```bash
+Los múltiplos de 2 hasta 100 son: 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98 100
 ```
 
 **14. Suma de pares e impares**  
 Calcula la suma de los números pares e impares entre 1 y 100 por separado.
 
 ```php
+$pares = 0;
+$impares = 0;
+for ($i=0; $i <= 100 ; $i++) { 
+    if ($i%2 === 0) {
+        $pares+=$i;
+    }else{
+        $impares+=$i;
+    }
+}
+echo "la suma de pares es $pares y la suma de impares es $impares"
+```
 
+### salida
+
+```bash
+la suma de pares es 2550 y la suma de impares es 2500
 ```
 
 **15. Adivinar número**  
-Genera un número aleatorio entre 1 y 20.
-    Pide al usuario que lo adivine y usa un bucle con condicionales para dar pistas: "Mayor" o "Menor".
+Genera un número aleatorio entre 1 y 20.  
+Pide al usuario que lo adivine y usa un bucle con condicionales para dar pistas: "Mayor" o "Menor".
 
 ```php
 
+```
+
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
 ```
 
 ## 4️⃣ Construcción de Algorítmicos
@@ -188,11 +322,23 @@ Comprueba si un número es perfecto (la suma de sus divisores propios es igual a
 
 ```
 
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+```
+
 **17. Invertir número**  
 Escribe un algoritmo que invierta los dígitos de un número (ejemplo: 123 → 321).
 
 ```php
 
+```
+
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
 ```
 
 **18. Palíndromo**  
@@ -202,11 +348,23 @@ Comprueba si una palabra almacenada en una variable es palíndroma.
 
 ```
 
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+```
+
 **19. Máximo común divisor (MCD)**  
 Escribe un algoritmo que calcule el MCD de dos números.
 
 ```php
 
+```
+
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
 ```
 
 **20. Triángulo de asteriscos**  
@@ -223,4 +381,10 @@ Ejemplo con n = 5:
 
 ```php
 
+```
+
+### salida
+
+```bash
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
 ```
