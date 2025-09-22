@@ -1,13 +1,18 @@
 <?php
-function montanaAsteriscos($n, $m) {
-    for ($i = 1; $i <= $n; $i++) {
-        for ($j = 1; $j <= $m; $j++) {
-            echo str_repeat("*", $i);
-            if ($j < $m) {
-                echo str_repeat(" ", $n - $i);
-            }
-        }
-        echo "\n";
+function multiplos(int $n) {
+    $multiplos = [];
+    for ($i=0; $i < $n; $i++) { 
+    if ($i % 3 == 0 || $i % 5 == 0 ) {
+        $multiplos[] = $i; 
     }
+    }
+    return $multiplos;
 }
-montanaAsteriscos(4, 2);
+function suma($list){
+    return $suma = array_sum($list);
+}
+
+$numeros = multiplos(10);
+
+echo implode(",",$numeros) . "\n";
+echo suma(multiplos(10)) . "\n";
