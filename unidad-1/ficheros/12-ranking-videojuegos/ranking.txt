@@ -1,0 +1,4 @@
+Sonic: 8
+Zelda: 10
+Mario: 9
+Metroid:2
