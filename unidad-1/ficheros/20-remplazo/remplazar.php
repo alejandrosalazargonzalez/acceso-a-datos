@@ -1,8 +1,6 @@
 <?php
-// Leer la plantilla
 $plantilla = file_get_contents("plantilla.txt");
 
-// Leer los archivos de palabras
 $animales = file("animales.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $lugares  = file("lugares.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $comidas  = file("comidas.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

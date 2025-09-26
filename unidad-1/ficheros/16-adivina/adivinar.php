@@ -24,7 +24,7 @@
     $input = trim($intento);
 
     if (strtolower($input) == trim(strtolower($adivina))) {
-        echo "¡Correcto!\n";
+        echo "Correcto\n";
     } else {
         echo "Incorrecto. La palabra era: $adivina\n";
     }

@@ -6,3 +6,4 @@
         fwrite($file,$calculo);
     }
     fclose($file);
+    echo file_get_contents("tabla5.txt");
