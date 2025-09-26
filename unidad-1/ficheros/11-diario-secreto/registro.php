@@ -1,5 +1,5 @@
 <?php
-    $file = fopen("diario.txt", "w");
+    $file = fopen("diario.txt", "a");
     do{
         $datetime = date_format(date_create(), "Y-m-d H:i");
         $entrada = readline("¿que hiciste hoy? Si no hiciste nada no respondas ");
