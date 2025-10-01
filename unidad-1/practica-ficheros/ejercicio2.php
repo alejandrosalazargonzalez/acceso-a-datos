@@ -1,6 +1,6 @@
 <?php
 function recogerPalabras(): array {
-    $texto = strtolower(file_get_contents("texto.txt"));
+    $texto = strtolower(string: file_get_contents("texto.txt"));
     preg_match_all("/\p{L}+/u", $texto, $words);
     return $words[0];
 }
