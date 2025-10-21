@@ -1,15 +1,11 @@
 package com.docencia.file.proyecto_ficheros_jackson.repo;
 
 import com.docencia.file.proyecto_ficheros_jackson.files.model.Note;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class FileNoteRepository implements INoteRepository {
 

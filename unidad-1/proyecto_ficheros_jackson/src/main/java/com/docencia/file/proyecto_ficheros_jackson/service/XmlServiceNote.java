@@ -3,13 +3,17 @@ package com.docencia.file.proyecto_ficheros_jackson.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.docencia.file.proyecto_ficheros_jackson.files.model.Note;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-public class XmlServiceNote implements IServiceNote{
+public class XmlServiceNote extends ServiceNoteAbstract{
 
     XmlMapper xmlMapper;
+    private static Logger logger = LoggerFactory.getLogger(JsonServiceNote.class);
 
 
     public XmlServiceNote(){
@@ -57,9 +61,9 @@ public class XmlServiceNote implements IServiceNote{
         try {
             return xmlMapper.writeValueAsString(note);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("se ha producido un error {}", note, e);
+            return null;
         }
-        return null;
     }
 
 
@@ -68,8 +72,8 @@ public class XmlServiceNote implements IServiceNote{
         try {
             return xmlMapper.readValue(cadena,Note.class);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("se ha producido un error {}", cadena, e);
+            return null;
         }
-        return null;
     }
 }
