@@ -1,27 +1,34 @@
 package com.docencia.file.proyecto_ficheros_jackson.repo;
 
-import com.docencia.file.proyecto_ficheros_jackson.files.model.Note;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class FileNoteRepository implements INoteRepository {
+import com.docencia.file.proyecto_ficheros_jackson.files.model.Note;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-    private Path path;
+public abstract class FileNoteAbtractRepository implements INoteRepository {
+
     public String nameFile;
+    private Path path;
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    ObjectMapper mapper;
 
-    public FileNoteRepository(){
-        this.nameFile = "note-repsository.txt";
-        try {
-            this.path = verificarFichero();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public FileNoteAbtractRepository(String nameFile, ObjectMapper mapper){
+        this.nameFile = nameFile;
+        this.mapper = mapper;
+        path = verificarFichero();
+        //mapper = new XmlMapper();
+        //mapper = new JsonMapper();
     }
 
     /**
@@ -29,13 +36,23 @@ public class FileNoteRepository implements INoteRepository {
      * si no existe lo creo
      * @throws IOException
      */
-    private Path verificarFichero() throws IOException{
+    private Path verificarFichero() {
         URL resourceUrl;
         resourceUrl = getClass().getClassLoader().getResource(nameFile);
-        if (resourceUrl == null) {
-            throw new IOException("el fichero no existe");
-        }
         return Paths.get(resourceUrl.getPath());
+    }
+
+    private List<Note> readAllInternal() {
+        XmlMapper xmlMapper = new XmlMapper();
+        try {
+            if (!Files.exists(path) || Files.size(path) == 0) {
+                return new ArrayList<>();
+            }
+            Note[] arr = xmlMapper.readValue(Files.readAllBytes(path), Note[].class);
+            return new ArrayList<>(Arrays.asList(arr));
+        } catch (IOException e) {
+            throw new RuntimeException("Error leyendo JSON", e);
+        }
     }
 
     @Override
@@ -66,19 +83,6 @@ public class FileNoteRepository implements INoteRepository {
     public void delete(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    private List<Note> readAllInternal() {
-        XmlMapper xmlMapper = new XmlMapper();
-        try {
-            if (!Files.exists(path) || Files.size(path) == 0) {
-                return new ArrayList<>();
-            }
-            Note[] arr = xmlMapper.readValue(Files.readAllBytes(path), Note[].class);
-            return new ArrayList<>(Arrays.asList(arr));
-        } catch (IOException e) {
-            throw new RuntimeException("Error leyendo JSON", e);
-        }
     }
 
 }
