@@ -9,7 +9,6 @@ import com.docencia.file.proyecto_ficheros_jackson.files.model.Note;
 class JsonServiceNoteTest {
     JsonServiceNote jsonServiceNote;
     Note note;
-
     @BeforeEach
     void BeforeEach(){
         jsonServiceNote = new JsonServiceNote();

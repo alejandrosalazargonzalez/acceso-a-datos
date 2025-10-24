@@ -22,7 +22,22 @@ public class Note {
     private String content;
 
     public Note(){
+    }
 
+    public Note(String id){
+    this.id = id;
+    }
+
+    /**
+     * constructor con parametros de la clase
+     * @param id identidficador de la nota
+     * @param titulo de la nota
+     * @param content de la nota
+     */
+    public Note(String id, String titulo, String content){
+        this.id = id;
+        this.title = titulo;
+        this.content = content;
     }
 
     public String getId() {

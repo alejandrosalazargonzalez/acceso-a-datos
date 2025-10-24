@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class FileNoteRepository implements INoteRepository {
+public class FileNoteRepository extends FileNoteAbtractRepository {
 
     private Path path;
     public String nameFile;
@@ -36,36 +36,6 @@ public class FileNoteRepository implements INoteRepository {
             throw new IOException("el fichero no existe");
         }
         return Paths.get(resourceUrl.getPath());
-    }
-
-    @Override
-    public boolean exist(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exist'");
-    }
-
-    @Override
-    public Note findById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    @Override
-    public List<Note> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
-    public Note save(Note n, Optional<String> extOpt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    @Override
-    public void delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     private List<Note> readAllInternal() {
