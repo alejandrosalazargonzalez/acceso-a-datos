@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.repo.FileNoteRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.227 s <<< FAILURE! -- in com.docencia.repo.FileNoteRepositoryTest
-com.docencia.repo.FileNoteRepositoryTest.insertNoteTest -- Time elapsed: 0.183 s <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.566 s <<< FAILURE! -- in com.docencia.repo.FileNoteRepositoryTest
+com.docencia.repo.FileNoteRepositoryTest.insertNoteTest -- Time elapsed: 0.513 s <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem()" because "path" is null
 	at java.base/java.nio.file.Files.provider(Files.java:105)
 	at java.base/java.nio.file.Files.exists(Files.java:2515)
-	at com.docencia.repo.FileNoteRepository.readAllInternal(FileNoteRepository.java:86)
-	at com.docencia.repo.FileNoteRepository.findAll(FileNoteRepository.java:65)
-	at com.docencia.repo.FileNoteAbstractRepository.find(FileNoteAbstractRepository.java:82)
-	at com.docencia.repo.FileNoteRepositoryTest.beforeEach(FileNoteRepositoryTest.java:21)
+	at com.docencia.repo.file.FileNoteRepository.readAllInternal(FileNoteRepository.java:86)
+	at com.docencia.repo.file.FileNoteRepository.findAll(FileNoteRepository.java:65)
+	at com.docencia.repo.file.FileNoteAbstractRepository.find(FileNoteAbstractRepository.java:83)
+	at com.docencia.repo.FileNoteRepositoryTest.beforeEach(FileNoteRepositoryTest.java:23)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
@@ -19,17 +19,17 @@ java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem(
 		at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
 		at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
 		at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
-		at com.docencia.repo.FileNoteRepositoryTest.afterEach(FileNoteRepositoryTest.java:28)
+		at com.docencia.repo.FileNoteRepositoryTest.afterEach(FileNoteRepositoryTest.java:30)
 		... 3 more
 
-com.docencia.repo.FileNoteRepositoryTest.createFileTest -- Time elapsed: 0.013 s <<< ERROR!
+com.docencia.repo.FileNoteRepositoryTest.createFileTest -- Time elapsed: 0.007 s <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem()" because "path" is null
 	at java.base/java.nio.file.Files.provider(Files.java:105)
 	at java.base/java.nio.file.Files.exists(Files.java:2515)
-	at com.docencia.repo.FileNoteRepository.readAllInternal(FileNoteRepository.java:86)
-	at com.docencia.repo.FileNoteRepository.findAll(FileNoteRepository.java:65)
-	at com.docencia.repo.FileNoteAbstractRepository.find(FileNoteAbstractRepository.java:82)
-	at com.docencia.repo.FileNoteRepositoryTest.beforeEach(FileNoteRepositoryTest.java:21)
+	at com.docencia.repo.file.FileNoteRepository.readAllInternal(FileNoteRepository.java:86)
+	at com.docencia.repo.file.FileNoteRepository.findAll(FileNoteRepository.java:65)
+	at com.docencia.repo.file.FileNoteAbstractRepository.find(FileNoteAbstractRepository.java:83)
+	at com.docencia.repo.FileNoteRepositoryTest.beforeEach(FileNoteRepositoryTest.java:23)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
@@ -39,6 +39,6 @@ java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem(
 		at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
 		at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
 		at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
-		at com.docencia.repo.FileNoteRepositoryTest.afterEach(FileNoteRepositoryTest.java:28)
+		at com.docencia.repo.FileNoteRepositoryTest.afterEach(FileNoteRepositoryTest.java:30)
 		... 3 more
 
