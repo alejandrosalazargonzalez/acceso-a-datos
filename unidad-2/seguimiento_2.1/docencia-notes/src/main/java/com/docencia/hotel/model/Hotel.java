@@ -1,16 +1,24 @@
 package com.docencia.hotel.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+/**
+ *  @author: alejandrosalazargonzalez
+ *  @version: 1.0.0
+ */
 @Entity
 @Table(name = "hotel")
 public class Hotel {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id",nullable = false)
     private String id;
 
     @Column(name = "name")
@@ -19,7 +27,14 @@ public class Hotel {
     @Column(name = "address")
     private String address;
 
+    @OneToMany(mappedBy = "hotelId")
+    private List<Room> rooms = new ArrayList<>();
+
     public Hotel() {}
+
+    public Hotel(String id){
+        this.id = id;
+    }
 
     public Hotel(String id, String title, String content) {
         this.id = id;

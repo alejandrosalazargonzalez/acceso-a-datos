@@ -3,82 +3,139 @@ package com.docencia.hotel.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.Objects;
+
+/**
+ *  @author: alejandrosalazargonzalez
+ *  @version: 1.0.0
+ */
 
 @Entity
 @Table(name = "booking")
 public class Booking {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id",nullable = false)
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "check_in")
+    private String checkIn;
+
+    @Column(name = "check_out")
+    private String checkOut;
+
+    @OneToMany
+    @JoinColumn(name = "room_id")
     private String roomId;
 
-    @Column(name = "address")
-    private String address;
+    @OneToOne
+    @JoinColumn(name = "guest_id")
+    private String guestId;
 
-    public Booking() {}
+    public Booking() {
+    }
 
-    public Booking(String id, String title, String content) {
+    public Booking(String id){
         this.id = id;
-        this.roomId = title;
-        this.address = content;
+    }
+
+    public Booking(String id, String checkIn, String checkOut, String roomId, String guestId) {
+        this.id = id;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.roomId = roomId;
+        this.guestId = guestId;
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
+    public String getCheckIn() {
+        return this.checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public String getCheckOut() {
+        return this.checkOut;
+    }
+
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }
+
     public String getRoomId() {
-        return roomId;
+        return this.roomId;
     }
 
-    public void setRoomId(String title) {
-        this.roomId = title;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
-    public String getAddress() {
-        return address;
+    public String getGuestId() {
+        return this.guestId;
     }
 
-    public void setAddress(String content) {
-        this.address = content;
+    public void setGuestId(String guestId) {
+        this.guestId = guestId;
+    }
+
+    public Booking id(String id) {
+        setId(id);
+        return this;
+    }
+
+    public Booking checkIn(String checkIn) {
+        setCheckIn(checkIn);
+        return this;
+    }
+
+    public Booking checkOut(String checkOut) {
+        setCheckOut(checkOut);
+        return this;
+    }
+
+    public Booking roomId(String roomId) {
+        setRoomId(roomId);
+        return this;
+    }
+
+    public Booking guestId(String guestId) {
+        setGuestId(guestId);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Booking)) {
+            return false;
+        }
+        Booking booking = (Booking) o;
+        return Objects.equals(id, booking.id);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Booking other = (Booking) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Note [id=" + id + ", title=" + roomId + ", content=" + address + "]";
+        return "Booking [id=" + id + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", roomId=" + roomId
+                + ", guestId=" + guestId + "]";
     }
 
 }
