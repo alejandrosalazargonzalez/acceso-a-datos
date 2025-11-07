@@ -1,4 +1,4 @@
-package com.docencia.repo;
+package com.docencia.repository;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -10,7 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.docencia.hotel.model.Hotel;
-import com.docencia.hotel.repo.INoteRepository;
 
 @SpringBootTest
 @ActiveProfiles("test")
