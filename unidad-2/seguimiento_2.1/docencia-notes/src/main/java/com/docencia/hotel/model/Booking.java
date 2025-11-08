@@ -51,6 +51,14 @@ public class Booking {
         this.guestId = guestId;
     }
 
+    public Booking(String id, String checkIn, String checkOut, Guest guest, Room room) {
+        this.id = id;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.guestId = guest.getId();
+        this.roomId = room.getId();
+    }
+
     public String getId() {
         return this.id;
     }
