@@ -21,7 +21,6 @@ public abstract class AbstractJpaRepository<T, ID> implements ICrudRepository<T,
     public void setRepository(IGeneralInteface<T, ID> repository) {
         this.repository = repository;
     }
-
     
     @Override
     public boolean existsById(ID id) {
@@ -56,10 +55,7 @@ public abstract class AbstractJpaRepository<T, ID> implements ICrudRepository<T,
     @Override
     @Transactional
     public boolean deleteById(ID id) {
-        if (!existsById(id)) {
-            return false;
-        }
-        return true;
+        return existsById(id);
     }
 
 }

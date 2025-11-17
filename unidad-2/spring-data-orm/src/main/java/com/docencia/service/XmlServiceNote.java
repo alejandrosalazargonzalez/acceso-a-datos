@@ -12,12 +12,10 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 public class XmlServiceNote extends ServiceNoteAbstract {
     XmlMapper xmlMapper;
 
-
     private static Logger logger = LoggerFactory.getLogger(XmlServiceNote.class);
 
-
     public XmlServiceNote() {
-        xmlMapper = new XmlMapper(); 
+        xmlMapper = new XmlMapper();
     }
 
     @Override
@@ -70,4 +68,5 @@ public class XmlServiceNote extends ServiceNoteAbstract {
         }
         return null;
     }
+
 }

@@ -34,17 +34,13 @@ public class FileNoteRepository extends FileNoteAbstractRepository {
      * 
      * @throws IOException
      */
-
     private Path verificarFichero() throws IOException {
-
         URL resource;
         resource = getClass().getClassLoader().getResource(nameFile);
         if (resource == null) {
             throw new IOException("El fichero no existe " + nameFile);
         }
-
         return Paths.get(resource.getPath()) ;
-
     }
 
     @Override
@@ -55,7 +51,7 @@ public class FileNoteRepository extends FileNoteAbstractRepository {
 
     @Override
     public Note findById(String id) {
-       return null;
+        return null;
     }
 
     @Override

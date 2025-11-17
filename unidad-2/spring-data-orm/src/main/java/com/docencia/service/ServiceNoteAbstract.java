@@ -21,7 +21,5 @@ public abstract class ServiceNoteAbstract implements IServiceNote {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
-    
 
-    
 }

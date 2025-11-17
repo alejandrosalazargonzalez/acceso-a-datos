@@ -22,7 +22,7 @@ public class AlumnoMapperUtils {
         return alumno;
     }
 
-        public static AlumnoEntity to(Alumno alumno){
+    public static AlumnoEntity to(Alumno alumno){
         if (alumno == null) {
             return null;
         }

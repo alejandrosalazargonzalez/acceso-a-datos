@@ -30,8 +30,6 @@ public class JsonServiceNote extends ServiceNoteAbstract {
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
-
-
     @Override
     public Note save(Note note) {
         // TODO Auto-generated method stub
@@ -50,14 +48,13 @@ public class JsonServiceNote extends ServiceNoteAbstract {
             return jsonMapper.writeValueAsString(note);
         } catch (JsonProcessingException e) {
             logger.error("Se ha producido un error en la transformacion de note {}", note,  e);
-
         }
         return null;
     }
 
     @Override
     public Note stringToNote(String data) {
-       try {
+        try {
             return jsonMapper.readValue(data, Note.class);
         } catch (JsonProcessingException e) {
             logger.error("Se ha producido un error en la transformacion de data {}", data,  e);
@@ -65,4 +62,5 @@ public class JsonServiceNote extends ServiceNoteAbstract {
         }
         
     }
+    
 }

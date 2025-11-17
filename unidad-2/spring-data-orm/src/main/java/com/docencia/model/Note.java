@@ -77,7 +77,6 @@ public class Note {
         this.content = content;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -94,5 +93,4 @@ public class Note {
         return Objects.hash(id);
     }
     
-
 }

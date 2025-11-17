@@ -1,4 +1,5 @@
 package com.docencia.objetos.domain;
+
 import java.util.Objects;
 
 public class Alumno {
@@ -7,11 +8,10 @@ public class Alumno {
   private String email;
   private String ciclo;
 
-
   public Alumno() {
   }
 
-    public Alumno(Long id) {
+  public Alumno(Long id) {
     this.id = id;
   }
 
@@ -55,14 +55,14 @@ public class Alumno {
   }
 
   @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Alumno)) {
-            return false;
-        }
-        Alumno alumno = (Alumno) o;
-        return Objects.equals(id, alumno.id);
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Alumno)) {
+      return false;
+    }
+    Alumno alumno = (Alumno) o;
+    return Objects.equals(id, alumno.id);
   }
 
   @Override
@@ -73,11 +73,11 @@ public class Alumno {
   @Override
   public String toString() {
     return "{" +
-      " id='" + getId() + "'" +
-      ", nombre='" + getNombre() + "'" +
-      ", email='" + getEmail() + "'" +
-      ", ciclo='" + getCiclo() + "'" +
-      "}";
+        " id='" + getId() + "'" +
+        ", nombre='" + getNombre() + "'" +
+        ", email='" + getEmail() + "'" +
+        ", ciclo='" + getCiclo() + "'" +
+        "}";
   }
-  
+
 }

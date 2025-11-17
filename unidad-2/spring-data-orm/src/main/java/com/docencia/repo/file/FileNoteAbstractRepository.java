@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.micrometer.common.util.StringUtils;
 
-
 public abstract class FileNoteAbstractRepository implements INoteRepository {
 
     private String nameFile;
@@ -40,7 +39,6 @@ public abstract class FileNoteAbstractRepository implements INoteRepository {
         URL resource;
         resource = getClass().getClassLoader().getResource(nameFile);
         return Paths.get(resource.getPath());
-
     }
 
     private List<Note> readAllInternal() {
@@ -100,7 +98,7 @@ public abstract class FileNoteAbstractRepository implements INoteRepository {
 
     @Override
     public Note save(Note note) {
-       lock.writeLock().lock();
+        lock.writeLock().lock();
         try {
             List<Note> notes = readAllInternal();
             if (StringUtils.isEmpty(note.getId()))  {
