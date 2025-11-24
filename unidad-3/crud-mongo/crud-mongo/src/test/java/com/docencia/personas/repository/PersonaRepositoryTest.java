@@ -32,7 +32,7 @@ public class PersonaRepositoryTest {
     @BeforeEach
     void cleanDataBase(){
         personaRepository.deleteAll();  
-        Direccion direccion = new Direccion("una calle", "una ciudad", "38200", cuidad);
+        Direccion direccion = new Direccion("una calle", cuidad, "38200", cuidad);
         personaColection = new Persona("test", 18, email , direccion);
         personaFind = personaRepository.save(personaColection);
     }

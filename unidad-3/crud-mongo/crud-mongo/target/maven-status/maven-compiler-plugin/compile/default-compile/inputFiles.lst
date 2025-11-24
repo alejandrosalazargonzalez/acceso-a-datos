@@ -1,4 +1,8 @@
 /home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/model/Persona.java
 /home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/PersonasApplication.java
 /home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/model/Direccion.java
+/home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/model/Rol.java
+/home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/services/impliments/PersonaServices.java
 /home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/repository/PersonaRepository.java
+/home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/services/IPersonaServices.java
+/home/dam/Descargas/repos/acceso-a-datos/unidad-3/crud-mongo/crud-mongo/src/main/java/com/docencia/personas/repository/RolRepository.java
