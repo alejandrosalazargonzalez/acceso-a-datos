@@ -1,11 +1,11 @@
 package com.docencia.rest.controller;
 
+import com.docencia.rest.domain.Producto;
 import com.docencia.rest.exeption.ResourceNotFoundException;
-import com.docencia.rest.model.Producto;
 import com.docencia.rest.service.ProductoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @RequestMapping("/api/v1/producto")
-
+@Tag(name = "Productos", description = "Operaciones sobre productos")
 public class ProductoController {
     ProductoService productoService;
 
@@ -71,8 +68,8 @@ public class ProductoController {
             @ApiResponse(responseCode = "404", description = "Producto not found")
     })
     @PostMapping("/add/")
-    public Producto createProducto(@Valid@RequestBody Producto producto) {
+    public Producto createProducto(@Valid @RequestBody Producto producto) {
         return productoService.save(producto);
     }
-    
+
 }

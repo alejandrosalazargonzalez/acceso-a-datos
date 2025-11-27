@@ -2,13 +2,12 @@ package com.docencia.rest.service;
 
 import com.docencia.rest.exeption.ResourceNotFoundException;
 import com.docencia.rest.model.User;
-import com.docencia.rest.repository.UserRepository;
+import com.docencia.rest.repository.interfaces.UserRepository;
 import com.docencia.rest.service.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class UserService implements UserServiceInterface {
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -31,19 +31,22 @@ public class UserService implements UserServiceInterface {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
     }
+
     @Override
     public User createUser(@Validated @RequestBody User user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(@PathVariable(value = "id") int userId, @Validated @RequestBody User userDetails) throws ResourceNotFoundException {
+    public User updateUser(@PathVariable(value = "id") int userId, @Validated @RequestBody User userDetails)
+            throws ResourceNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
         user.setName(userDetails.getName());
         return userRepository.save(user);
     }
+
     @Override
     public void deleteUser(@PathVariable(value = "id") int userId) throws ResourceNotFoundException {
         User user = userRepository.findById(userId)

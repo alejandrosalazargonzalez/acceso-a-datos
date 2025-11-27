@@ -4,8 +4,8 @@ import com.docencia.rest.exeption.ResourceNotFoundException;
 import com.docencia.rest.model.User;
 import com.docencia.rest.service.interfaces.UserServiceInterface;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/user")
-
+@Tag(name = "Usuarios", description = "Operaciones sobre usuarios")
 public class UsersController {
 
     private UserServiceInterface userService;

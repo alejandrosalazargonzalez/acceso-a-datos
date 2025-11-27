@@ -3,16 +3,11 @@ package com.docencia.rest.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "productos")
-public class Producto {
+public class ProductoEntity {
     private int id;
 
     @Column(name = "name", nullable = false)
@@ -27,7 +22,7 @@ public class Producto {
     /**
      * constructor vacio
      */
-    public Producto() {
+    public ProductoEntity() {
     }
 
     /**
@@ -35,7 +30,7 @@ public class Producto {
      * 
      * @param id del producto
      */
-    public Producto(int id) {
+    public ProductoEntity(int id) {
         this.id = id;
     }
 
@@ -46,7 +41,7 @@ public class Producto {
      * @param precio del producto
      * @param stock  del producto
      */
-    public Producto(String nombre, BigDecimal precio, int stock) {
+    public ProductoEntity(String nombre, BigDecimal precio, int stock) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
@@ -102,7 +97,7 @@ public class Producto {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Producto other = (Producto) obj;
+        final ProductoEntity other = (ProductoEntity) obj;
         return Objects.equals(this.id, other.id);
     }
 

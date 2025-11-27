@@ -1,4 +1,5 @@
 package com.docencia.rest.model;
+
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class User {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -31,6 +33,7 @@ public class User {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -42,9 +45,10 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass())
+            return false;
         User user = (User) o;
-        return id == user.id ;
+        return id == user.id;
     }
 
     @Override
