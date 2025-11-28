@@ -13,10 +13,10 @@ public class ProductoEntity {
     @Column(name = "name", nullable = false)
     private String nombre;
 
-    @Column(name = "precio", nullable = false)
+    @Column(name = "precio")
     private BigDecimal precio;
 
-    @Column(name = "stock", nullable = false)
+    @Column(name = "stock")
     private int stock;
 
     /**

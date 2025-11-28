@@ -2,10 +2,15 @@ package com.docencia.rest.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.docencia.rest.domain.Producto;
+import com.docencia.rest.mappers.DetalleProductoMapper;
+import com.docencia.rest.mappers.ProductoMapper;
+import com.docencia.rest.model.DetalleProductoDocument;
 import com.docencia.rest.model.ProductoEntity;
 import com.docencia.rest.repository.interfaces.DetalleProductoRepository;
 import com.docencia.rest.repository.interfaces.ProductoRepository;
@@ -14,54 +19,93 @@ import com.docencia.rest.service.interfaces.ProductoServiceInterface;
 @Service
 public class ProductoService implements ProductoServiceInterface {
 
-    private ProductoRepository productoRepository;
+    final private ProductoRepository productoRepository;
 
-    private DetalleProductoRepository detalleProductoRepository;
+    final private DetalleProductoRepository detalleProductoRepository;
+    final private ProductoMapper productoMapper;
+    final private DetalleProductoMapper detalleProductoMapper;
 
-    @Autowired
-    public void setProductoRepository(ProductoRepository productoRepository) {
+
+
+    public ProductoService(ProductoRepository productoRepository, DetalleProductoRepository detalleProductoRepository,
+            ProductoMapper productoMapper, DetalleProductoMapper detalleProductoMapper) {
         this.productoRepository = productoRepository;
-    }
-
-    @Autowired
-    public void setDetalleProductoRepository(DetalleProductoRepository detalleProductoRepository) {
         this.detalleProductoRepository = detalleProductoRepository;
+        this.productoMapper = productoMapper;
+        this.detalleProductoMapper = detalleProductoMapper;
     }
 
     @Override
-    public Optional<ProductoEntity> find(ProductoEntity producto) {
-        return productoRepository.findById(producto.getId());
-    }
-
-    @Override
-    public Optional<ProductoEntity> findById(int id) {
-        ProductoEntity productoFind = new ProductoEntity(id);
-        return find(productoFind);
-    }
-
-    @Override
-    public List<ProductoEntity> findAll() {
-        return productoRepository.findAll();
-    }
-
-    @Override
-    public ProductoEntity save(ProductoEntity producto) {
-        if (producto != null) {
-            return productoRepository.save(producto);
+    public Optional<Producto> find(Producto producto) {
+        if (producto == null) {
+            return Optional.empty();
         }
-        return producto;
+        return findById(producto.getId());
     }
 
     @Override
-    public boolean delete(ProductoEntity producto) {
-        productoRepository.deleteById(producto.getId());
+    public Optional<Producto> findById(int id) {
+        Optional<ProductoEntity> entityOpt = productoRepository.findById(id);
+        if (entityOpt.isEmpty()) {
+            return Optional.empty();
+        }
+
+        ProductoEntity entity = entityOpt.get();
+        DetalleProductoDocument detalleDoc = detalleProductoRepository.findByProductoId(id).orElse(null);
+
+        Producto producto = productoMapper.toDomain(entity, detalleDoc);
+        return Optional.of(producto);
+    }
+
+    @Override
+    public List<Producto> findAll() {
+        List<ProductoEntity> entities = productoRepository.findAll();
+
+        return entities.stream()
+                .map(entity -> {
+                    DetalleProductoDocument detalleDoc = detalleProductoRepository.findByProductoId(entity.getId())
+                            .get();
+                    return productoMapper.toDomain(entity, detalleDoc);
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Producto save(Producto producto) {
+        ProductoEntity entityToSave = productoMapper.toProducto(producto);
+        ProductoEntity savedEntity = productoRepository.save(entityToSave);
+
+        if (producto.getDetallesProducto() == null) {
+            return productoMapper.toProducto(savedEntity);
+        }
+        DetalleProductoDocument detalleDoc = null;
+        detalleDoc = detalleProductoMapper.toDocument(producto.getDetallesProducto());
+        detalleDoc.setProductoId(savedEntity.getId());
+        detalleDoc = detalleProductoRepository.save(detalleDoc);
+
+        return productoMapper.toDomain(savedEntity, detalleDoc);
+    }
+
+    @Override
+    public boolean delete(Producto producto) {
+        if (producto == null) {
+            return false;
+        }
+        int id = producto.getId();
+        if (!productoRepository.existsById(id)) {
+            return false;
+        }
+
+        productoRepository.deleteById(id);
+        detalleProductoRepository.deleteByProductoId(id);
         return true;
     }
 
     @Override
     public boolean deleteById(int id) {
         ProductoEntity productoDelete = new ProductoEntity(id);
-        return delete(productoDelete);
+        return true;
+        // return delete(productoDelete);
     }
 
 }

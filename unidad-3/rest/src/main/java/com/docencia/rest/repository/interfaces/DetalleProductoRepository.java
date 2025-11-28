@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.docencia.rest.model.DetalleProductoDocument;
 @Repository
 public interface DetalleProductoRepository extends MongoRepository<DetalleProductoDocument,String> {
-    //Optional<DetalleProductoDocument> findByProductoId(int productoId);
-    //DetalleProductoDocument save(int productoId, DetalleProductoDocument detalle);
-    //void deleteByProductoId(int productoId);
+    Optional<DetalleProductoDocument> findByProductoId(int productoId);
+    void deleteByProductoId(int productoId);
 }

@@ -39,6 +39,22 @@ public class Producto {
         this.stock = stock;
     }
 
+    /**
+     * constructor completo
+     * @param id
+     * @param nombre
+     * @param precio
+     * @param stock
+     * @param detallesProducto
+     */
+    public Producto(int id, String nombre, BigDecimal precio, int stock, DetalleProducto detallesProducto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+        this.detallesProducto = detallesProducto;
+    }
+
     public int getId() {
         return id;
     }
@@ -69,6 +85,14 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public DetalleProducto getDetallesProducto() {
+        return detallesProducto;
+    }
+
+    public void setDetallesProducto(DetalleProducto detallesProducto) {
+        this.detallesProducto = detallesProducto;
     }
 
     @Override
