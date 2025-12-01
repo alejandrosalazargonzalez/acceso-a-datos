@@ -18,4 +18,4 @@ public interface ProductoMapper {
     @Mapping(target = "detalleProducto", source = "detalle")
     Producto toDomain(ProductoEntity entity, DetalleProductoDocument detalle);
 
-} 
+}

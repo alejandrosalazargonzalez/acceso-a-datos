@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.docencia.rest.domain.Producto;
@@ -15,7 +14,6 @@ import com.docencia.rest.modelo.ProductoEntity;
 import com.docencia.rest.repository.interfaces.DetalleProductoRepository;
 import com.docencia.rest.repository.interfaces.ProductoRepository;
 import com.docencia.rest.service.interfaces.ProductoServiceInterface;
-import java.util.Objects;
 
 @Service
 public class ProductoService implements ProductoServiceInterface {

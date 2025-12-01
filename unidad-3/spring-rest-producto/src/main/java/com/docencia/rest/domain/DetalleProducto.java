@@ -3,8 +3,6 @@ package com.docencia.rest.domain;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Objects;
 
 
@@ -66,31 +64,6 @@ public class DetalleProducto {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
-    }
-
-    public DetalleProducto id(int id) {
-        setId(id);
-        return this;
-    }
-
-    public DetalleProducto productoId(int productoId) {
-        setProductoId(productoId);
-        return this;
-    }
-
-    public DetalleProducto descripcionLarga(String descripcionLarga) {
-        setDescripcionLarga(descripcionLarga);
-        return this;
-    }
-
-    public DetalleProducto especificacionesTecnicas(Map<String,String> especificacionesTecnicas) {
-        setEspecificacionesTecnicas(especificacionesTecnicas);
-        return this;
-    }
-
-    public DetalleProducto tags(List<String> tags) {
-        setTags(tags);
-        return this;
     }
 
     @Override

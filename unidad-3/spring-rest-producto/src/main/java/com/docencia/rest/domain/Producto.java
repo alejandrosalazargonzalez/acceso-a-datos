@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 
 import java.util.Objects;
 
-
-
-
 public class Producto {
     
     private int id;
@@ -70,7 +67,6 @@ public class Producto {
     public void setDetalleProducto(DetalleProducto detalleProducto) {
         this.detalleProducto = detalleProducto;
     }
-
 
     @Override
     public boolean equals(Object o) {

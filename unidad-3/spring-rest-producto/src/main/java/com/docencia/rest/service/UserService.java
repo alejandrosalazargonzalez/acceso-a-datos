@@ -13,7 +13,7 @@ import com.docencia.rest.repository.interfaces.UserRepository;
 import com.docencia.rest.service.interfaces.UserServiceInterface;
 
 @Service
-public class UserService implements UserServiceInterface{
+public class UserService implements UserServiceInterface {
 
     private UserRepository userRepository;
 
@@ -36,7 +36,7 @@ public class UserService implements UserServiceInterface{
     }
 
     public User updateUser(@PathVariable(value = "id") int userId,
-                                           @Validated @RequestBody User userDetails) throws ResourceNotFoundException {
+            @Validated @RequestBody User userDetails) throws ResourceNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
