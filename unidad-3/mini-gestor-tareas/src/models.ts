@@ -7,4 +7,4 @@ export interface Tarea {
 
 export type IdTarea = number;
 
-export type FiltroTarea = "todas" | "pendientes" | "completadas";
+export type FiltroTarea = "todas" | "pendientes" | "completadas"; 

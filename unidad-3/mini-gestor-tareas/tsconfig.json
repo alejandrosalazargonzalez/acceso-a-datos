@@ -1,12 +1,10 @@
-  {
-    "compilerOptions": {
-      "target": "ES2019",
-      "module": "CommonJS",
-      "strict": true,
-      "esModuleInterop": true,
-      "outDir": "dist"
-    },
-    "include": [
-      "src/**/*"
-, "src/tareas.ts"    ]
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
   }
+}
