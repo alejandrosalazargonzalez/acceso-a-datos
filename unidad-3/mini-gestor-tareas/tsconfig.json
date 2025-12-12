@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2019",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "target": "ES2019",
+    "module": "CommonJS",
     "strict": true,
-    "jsx": "react-jsx",
-    "skipLibCheck": true,
-  }
+    "esModuleInterop": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "api": "json-server --watch db.json --port 3000",
+    "build": "tsc",
+    "start": "node dist/index.js"
+    }
 }
