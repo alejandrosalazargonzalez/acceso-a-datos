@@ -1,35 +1,114 @@
 import {
-    crearTarea,
-    completarTarea,
-    filtrarTareas,
-} from "../src/tareas";
+    obtenerTareas,
+    crearTareaRemota,
+    actualizarTareaRemota,
+    borrarTareaRemota,
+} from "../src/apiTareas";
+import { Tarea } from "../src/models";
 
-describe("Funciones de tareas", () => {
-    test("crearTarea crea una tarea no completada", () => {
-        const tarea = crearTarea(1, "Probar función");
-        expect(tarea.completada).toBe(false);
-        expect(tarea.titulo).toBe("Probar función");
-    });
+// Hacemos que TypeScript sepa que vamos a mockear fetch
+declare const global: typeof globalThis & {
+    fetch: jest.Mock;
+};
 
-    test("completarTarea marca la tarea como completada", () => {
-        const tareas = [
-            crearTarea(1, "A"),
-            crearTarea(2, "B"),
-        ];
-        const resultado = completarTarea(tareas, 2);
-        const tarea2 = resultado.find((t) => t.id === 2)!;
+beforeEach(() => {
+    global.fetch = jest.fn();
+});
 
-        expect(tarea2.completada).toBe(true);
-    });
-
-    test("filtrarTareas filtra por completadas", () => {
-        const tareas = [
+describe("apiTareas (servicio REST)", () => {
+    test("obtenerTareas hace un GET y devuelve la lista de tareas", async () => {
+        const tareasMock: Tarea[] = [
             { id: 1, titulo: "A", completada: false },
             { id: 2, titulo: "B", completada: true },
         ];
 
-        const completadas = filtrarTareas(tareas, "completadas");
-        expect(completadas).toHaveLength(1);
-        expect(completadas[0].id).toBe(2);
+        global.fetch.mockResolvedValue({
+            ok: true,
+            status: 200,
+            statusText: "OK",
+            json: async () => tareasMock,
+        });
+
+        const resultado = await obtenerTareas();
+
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+        expect(global.fetch).toHaveBeenCalledWith("http://localhost:3000/tareas");
+        expect(resultado).toEqual(tareasMock);
+    });
+
+    test("crearTareaRemota hace POST y devuelve la tarea creada", async () => {
+        const tareaCreada: Tarea = {
+            id: 10,
+            titulo: "Nueva tarea",
+            completada: false,
+        };
+
+        global.fetch.mockResolvedValue({
+            ok: true,
+            status: 201,
+            statusText: "Created",
+            json: async () => tareaCreada,
+        });
+
+        const resultado = await crearTareaRemota({
+            titulo: "Nueva tarea",
+            completada: false,
+        });
+
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+        const [url, opciones] = global.fetch.mock.calls[0];
+        expect(url).toBe("http://localhost:3000/tareas");
+        expect(opciones.method).toBe("POST");
+        expect(resultado).toEqual(tareaCreada);
+    });
+
+    test("actualizarTareaRemota hace PUT y devuelve la tarea actualizada", async () => {
+        const tareaActualizada: Tarea = {
+            id: 1,
+            titulo: "Actualizada",
+            completada: true,
+        };
+
+        global.fetch.mockResolvedValue({
+            ok: true,
+            status: 200,
+            statusText: "OK",
+            json: async () => tareaActualizada,
+        });
+
+        const resultado = await actualizarTareaRemota(tareaActualizada);
+
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+        const [url, opciones] = global.fetch.mock.calls[0];
+        expect(url).toBe("http://localhost:3000/tareas/1");
+        expect(opciones.method).toBe("PUT");
+        expect(resultado).toEqual(tareaActualizada);
+    });
+
+    test("borrarTareaRemota hace DELETE y no devuelve contenido", async () => {
+        global.fetch.mockResolvedValue({
+            ok: true,
+            status: 200,
+            statusText: "OK",
+            json: async () => ({}),
+        });
+
+        await borrarTareaRemota(1);
+
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+        const [url, opciones] = global.fetch.mock.calls[0];
+        expect(url).toBe("http://localhost:3000/tareas/1");
+        expect(opciones.method).toBe("DELETE");
+    });
+
+    test("obtenerTareas lanza error si la respuesta no es ok", async () => {
+        global.fetch.mockResolvedValue({
+            ok: false,
+            status: 500,
+            statusText: "Internal Server Error",
+            json: async () => [],
+        });
+
+        await expect(obtenerTareas()).rejects.toThrow("Error al cargar tareas");
     });
 });
