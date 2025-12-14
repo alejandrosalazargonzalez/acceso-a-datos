@@ -11,10 +11,10 @@ export function getDb(): Database.Database {
 
         db.exec(`
         CREATE TABLE IF NOT EXISTS tareas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        titulo TEXT NOT NULL,
-        descripcion TEXT,
-        completada INTEGER NOT NULL
+            id TEXT PRIMARY KEY,
+            titulo TEXT NOT NULL,
+            descripcion TEXT,
+            completada INTEGER NOT NULL
         )
     `);
     }

@@ -17,6 +17,18 @@
       "titulo": "Tarea creada desde index-rest.ts",
       "descripcion": "Probando POST contra json-server",
       "completada": false
+    },
+    {
+      "titulo": "Tarea Remota de prueba",
+      "descripcion": "Creada desde Node CLI",
+      "completada": false,
+      "id": "3CU1T56"
+    },
+    {
+      "titulo": "Tarea Remota de prueba",
+      "descripcion": "Creada desde Node CLI",
+      "completada": false,
+      "id": "uONqAvq"
     }
   ]
 }

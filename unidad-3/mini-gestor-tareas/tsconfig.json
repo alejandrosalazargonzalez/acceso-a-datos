@@ -9,11 +9,9 @@
   "include": [
     "src/**/*"
   ],
-
   "scripts": {
-    "start": "node dist/index.js",
+    "api": "json-server --watch db.json --port 3000",
     "build": "tsc",
-    "dev": "ts-node src/index.ts"
-  }
-
+    "start": "node dist/index.js"
+    }
 }
